@@ -1,9 +1,18 @@
-import React from 'react';
-import {View, Text, Image, StyleSheet, TextInput} from 'react-native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 const LoginView = () => {
   const [t] = useTranslation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <View style={styles.rootElementStyle}>
@@ -11,7 +20,23 @@ const LoginView = () => {
         style={styles.imageStyle}
         source={require('../../assets/icons/appicon.png')}
       />
-      <TextInput style={styles.inputView} placeholder={t('login.email')} />
+      <TextInput
+        style={styles.inputView}
+        placeholder={t('login.email')}
+        defaultValue={email}
+        onChangeText={email => setEmail(email)}
+      />
+      <TextInput
+        style={styles.inputView}
+        placeholder={t('login.password')}
+        defaultValue={password}
+        secureTextEntry={true}
+        onChangeText={p => setPassword(p)}
+      />
+      <TouchableOpacity style={styles.loginButton}>
+        <Text style={styles.loginText}>{t('login.submit')}</Text>
+      </TouchableOpacity>
+      <Text style={styles.registerTextStyle}>Register</Text>
     </View>
   );
 };

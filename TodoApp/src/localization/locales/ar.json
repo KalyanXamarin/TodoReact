@@ -1,0 +1,12 @@
+{
+    "login": {
+        "welcome": "Welcome !",
+        "subText": "Please enter your ONP credentials",
+        "forgotPassword": "Forgot your password?",
+        "submit": "To log in",
+        "enterPassword": "Enter your password*",
+        "password": "Password*",
+        "enterEmail": "Enter your Email*",
+        "email": "Email*"
+    }
+}
