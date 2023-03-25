@@ -1,0 +1,16 @@
+{
+    "login": {
+        "authenticationFailedDesc": "Authentification échouée. Veuillez vérifier votre identifiant et mot de passe.",
+        "passwordChanged":"Votre mot de passe a été modifié avec succès",
+        "email": "Identifiant*",
+        "enteryourEmailId": "Entrer votre identifiant*",
+        "enterYourLoginDetailsToContinue": "Entrez vos informations de connexion pour continuer",
+        "enteryourPassword": "Tapez votre mot de passe*",
+        "forgotPassword": "Mot de passe oublié?",
+        "logIn": "Connexion",
+        "password": "Mot de passe*",
+        "pleaseEnterPassword": "Veuillez entrer le mot de passe",
+        "pleaseEnterValidEmail": "Veuillez saisir une adresse e-mail valide",
+        "welcomBack": "Content de te revoir!"
+      }
+}

@@ -6,15 +6,11 @@
  */
 
 import React from 'react';
-import RootNavigator from "./src/navigator/RootNavigator"
-
+import RootNavigator from './src/navigator/RootNavigator';
+import './src/localization/Localization';
 
 function App() {
-  return (
-    <RootNavigator/>
-  );
+  return <RootNavigator />;
 }
-
-
 
 export default App;

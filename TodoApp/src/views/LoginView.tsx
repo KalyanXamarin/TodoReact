@@ -1,12 +1,17 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
+import React from 'react';
+import {View, Text, Image, StyleSheet, TextInput} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 const LoginView = () => {
+  const [t] = useTranslation();
+
   return (
     <View style={styles.rootElementStyle}>
       <Image
         style={styles.imageStyle}
         source={require('../../assets/icons/appicon.png')}
       />
+      <TextInput style={styles.inputView} placeholder={t('login.email')} />
     </View>
   );
 };
