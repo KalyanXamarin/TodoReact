@@ -1,11 +1,11 @@
-import { View, Text } from "react-native"
+import {View, Text} from 'react-native';
 
 const RegisterView = () => {
-    return(
-        <View>
-            <Text>Register View</Text>
-        </View>
-    )
-}
+  return (
+    <View>
+      <Text>Register View</Text>
+    </View>
+  );
+};
 
-export default RegisterView
+export default RegisterView;
