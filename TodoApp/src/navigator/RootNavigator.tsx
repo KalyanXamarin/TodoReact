@@ -9,25 +9,23 @@ const Stack = createNativeStackNavigator();
 
 const RootNavigator = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Login"
-        screenOptions={{
-          headerTitleAlign: 'center',
-          headerStyle: {
-            backgroundColor: '#047ABC',
-          },
-          headerTintColor: '#ffffff',
-          headerTitleStyle: {
-            fontSize: 25,
-            fontWeight: 'bold',
-          },
-        }}>
-        <Stack.Screen name="Login" component={LoginView} />
-        <Stack.Screen name="Home" component={HomeView} />
-        <Stack.Screen name="Register" component={RegisterView} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#047ABC',
+        },
+        headerTintColor: '#ffffff',
+        headerTitleStyle: {
+          fontSize: 25,
+          fontWeight: 'bold',
+        },
+      }}>
+      <Stack.Screen name="Login" component={LoginView} />
+      <Stack.Screen name="Home" component={HomeView} />
+      <Stack.Screen name="Register" component={RegisterView} />
+    </Stack.Navigator>
   );
 };
 

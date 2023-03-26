@@ -8,11 +8,27 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useTranslation} from 'react-i18next';
+import {LoginAsync} from '../services/UserService';
+import {useNavigation} from '@react-navigation/native';
+import {useNetInfo} from '@react-native-community/netinfo';
+import Loader from '../components/Loader';
 
 const LoginView = () => {
   const [t] = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showLoader, setShowLoader] = useState(false);
+  const navigation = useNavigation();
+  const isConnected = useNetInfo();
+
+  const doLogin = async () => {
+    setShowLoader(true);
+    const token = await LoginAsync(email, password);
+    setShowLoader(false);
+    if (token.access_token) {
+      navigation.navigate('Home');
+    }
+  };
 
   return (
     <View style={styles.rootElementStyle}>
@@ -33,10 +49,11 @@ const LoginView = () => {
         secureTextEntry={true}
         onChangeText={p => setPassword(p)}
       />
-      <TouchableOpacity style={styles.loginButton}>
+      <TouchableOpacity style={styles.loginButton} onPress={() => doLogin()}>
         <Text style={styles.loginText}>{t('login.submit')}</Text>
       </TouchableOpacity>
       <Text style={styles.registerTextStyle}>Register</Text>
+      <Loader isVisible={showLoader} />
     </View>
   );
 };
