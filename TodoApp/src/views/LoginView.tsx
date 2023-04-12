@@ -12,22 +12,43 @@ import {LoginAsync} from '../services/UserService';
 import {useNavigation} from '@react-navigation/native';
 import {useNetInfo} from '@react-native-community/netinfo';
 import Loader from '../components/Loader';
+import AlertComponent from '../components/AlertComponent';
+import {GetisEmailValid, GetisPasswordValid} from '../utils/ValidationHelper';
 
 const LoginView = () => {
   const [t] = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showLoader, setShowLoader] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [isAlertVisible, setisAlertVisible] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState(true);
+
   const navigation = useNavigation();
   const isConnected = useNetInfo();
 
   const doLogin = async () => {
-    setShowLoader(true);
-    const token = await LoginAsync(email, password);
-    setShowLoader(false);
-    if (token.access_token) {
-      navigation.navigate('Home');
+    if (isConnected) {
+      setShowLoader(true);
+      const token = await LoginAsync(email, password);
+      setShowLoader(false);
+      if (token.access_token) {
+        navigation.navigate('Home');
+      }
+    } else {
+      setAlertMessage('No Internet Please Try again');
+      setisAlertVisible(true);
     }
+  };
+
+  const SetEmailValidate = (email: string) => {
+    setEmail(email);
+    setIsEmailValid(GetisEmailValid(email));
+  };
+  const SetPasswordValidate = (password: string) => {
+    setEmail(password);
+    setIsPasswordValid(GetisPasswordValid(password));
   };
 
   return (
@@ -40,20 +61,30 @@ const LoginView = () => {
         style={styles.inputView}
         placeholder={t('login.email')}
         defaultValue={email}
-        onChangeText={email => setEmail(email)}
+        onChangeText={email => SetEmailValidate(email)}
       />
       <TextInput
         style={styles.inputView}
         placeholder={t('login.password')}
         defaultValue={password}
         secureTextEntry={true}
-        onChangeText={p => setPassword(p)}
+        onChangeText={p => SetPasswordValidate(p)}
       />
       <TouchableOpacity style={styles.loginButton} onPress={() => doLogin()}>
         <Text style={styles.loginText}>{t('login.submit')}</Text>
       </TouchableOpacity>
       <Text style={styles.registerTextStyle}>Register</Text>
       <Loader isVisible={showLoader} />
+      <AlertComponent
+        heading={alertMessage}
+        isVisible={isAlertVisible}
+        yesText="Ok"
+        noText="NO"
+        onPressYes={() => {
+          console.log(isAlertVisible);
+          setisAlertVisible(false);
+        }}
+      />
     </View>
   );
 };

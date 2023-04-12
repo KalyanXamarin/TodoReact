@@ -11,7 +11,7 @@ const Loader = ({isVisible}: Props): JSX.Element => {
       style={{margin: 0, backgroundColor: 'rgba(52, 52, 52, 0.8)'}}
       statusBarTranslucent={true}
       animationType="fade"
-      isVisible={isVisible}
+      visible={isVisible}
       transparent={true}>
       <View style={styles.mainContainer}>
         <ActivityIndicator color="blue" size={80} />

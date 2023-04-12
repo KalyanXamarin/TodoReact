@@ -15,10 +15,6 @@ import {StatusBar} from 'react-native';
 function App() {
   return (
     <NavigationContainer theme={Shared}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor={Shared?.colors?.backgroundColor}
-      />
       <RootNavigator />
     </NavigationContainer>
   );
